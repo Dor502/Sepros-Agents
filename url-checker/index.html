@@ -35,6 +35,43 @@
 
   body { font-family: var(--sans); background: var(--bg); color: var(--text); min-height: 100vh; direction: rtl; }
 
+  /* ===== BREADCRUMB ===== */
+  .breadcrumb-bar {
+    background: #1a2d6b;
+    padding: 0 32px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 101;
+  }
+  .bc-back {
+    display: inline-flex; align-items: center; gap: 7px;
+    height: 100%; padding: 0 14px 0 10px;
+    color: #fff; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border-left: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.08);
+    transition: background 0.15s; cursor: pointer;
+  }
+  .bc-back:hover { background: rgba(255,255,255,0.16); }
+  .bc-back:active { background: rgba(255,255,255,0.22); }
+  .bc-arrow {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; flex-shrink: 0;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .bc-back:hover .bc-arrow { background: rgba(255,255,255,0.28); transform: translateX(2px); }
+  .bc-label { position: relative; }
+  .bc-label::after { content: ''; position: absolute; bottom: -1px; right: 0; width: 0; height: 1px; background: rgba(255,255,255,0.6); transition: width 0.2s; }
+  .bc-back:hover .bc-label::after { width: 100%; }
+  .bc-separator { font-size: 11px; color: rgba(255,255,255,0.25); padding: 0 10px; }
+  .bc-current { font-size: 12px; color: rgba(255,255,255,0.55); font-weight: 400; }
+
   /* ===== TOPBAR ===== */
   .topbar {
     background: var(--brand);
@@ -44,7 +81,7 @@
     align-items: center;
     justify-content: space-between;
     position: sticky;
-    top: 0;
+    top: 36px;
     z-index: 100;
   }
   .topbar-left { display: flex; align-items: center; gap: 20px; }
@@ -183,6 +220,15 @@
 <body>
 
 <!-- TOPBAR -->
+<div class="breadcrumb-bar">
+  <a class="bc-back" href="../">
+    <div class="bc-arrow">→</div>
+    <span class="bc-label">לוח הבקרה</span>
+  </a>
+  <span class="bc-separator">/</span>
+  <span class="bc-current">בדיקת עמודי נחיתה</span>
+</div>
+
 <div class="topbar">
   <div class="topbar-left">
     <!-- לוגו SEPROS עם אייקון SVG -->
